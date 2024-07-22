@@ -30,9 +30,9 @@ Tasks:
 9. Entity for the message.
 
 DoD:
-1. Tests
-2. Documentation
-3. Clean code
+1. Tests - Done
+2. Documentation - Done
+3. Clean code - Done
 
 Submission:
 Link to GitHub, send to: amirbilu@tabnine.com

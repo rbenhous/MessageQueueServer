@@ -12,4 +12,4 @@ class LoggerInterface {
   }
 }
 
-module.exports = LoggerInterface;
+export default LoggerInterface;

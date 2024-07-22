@@ -1,5 +1,6 @@
-const LoggerInterface = require("./logger.interface.js");
-const Logger = require("js-logger");
+import Logger from "js-logger";
+import LoggerInterface from "./logger.interface.js";
+
 
 Logger.useDefaults();
 
@@ -18,4 +19,4 @@ class LoggerConsole extends LoggerInterface {
 }
 
 const logger = new LoggerConsole();
-module.exports = logger;
+export default logger;

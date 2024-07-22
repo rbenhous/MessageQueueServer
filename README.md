@@ -9,6 +9,7 @@ npm install
 2. Create .env file in the root directory and add the following environment variables:
 ```bash
 PORT=3000
+MAX_QUEUE_SIZE = 100
 ```
 
 ## Running the app

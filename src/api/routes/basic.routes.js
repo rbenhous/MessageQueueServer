@@ -1,9 +1,10 @@
 import express from "express";
+import logger from "../../common/logger/console-logger.js";
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    console.log("listening on port 3000");
+    logger.info("listening on port 3000");
     res.send('listening on port 3000');
 });
 

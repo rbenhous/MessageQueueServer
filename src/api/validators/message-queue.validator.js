@@ -1,4 +1,5 @@
 import Result from "../../domain/models/result.model.js";
+import ValidatorResult from "./validator-result.model.js";
 
 /**
  * Validates the input request.
@@ -18,9 +19,6 @@ const add_message_to_queue_validator = (queue_name, message) => {
 const get_messages_from_queue_validator = (queue_name, timeout) => {
   if (!queue_name) {
     return ValidatorResult.NotValid(Result.createInvalidRequest("queue_name is required"));
-  }
-  if (!timeout) {
-    return ValidatorResult.NotValid(Result.createInvalidRequest("timeout is required"));
   }
   return ValidatorResult.Valid();
 }

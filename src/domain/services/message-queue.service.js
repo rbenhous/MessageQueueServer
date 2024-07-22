@@ -3,7 +3,7 @@ import MessageQueuesRepository from "../../infra/repositories/message-queues.rep
 import logger from "../../common/logger/console-logger.js";
 import waitTimeout from "../../common/utils/wait-timeout.util.js";
 
-const DEFAULT_TIMEOUT =  10;
+const DEFAULT_TIMEOUT =  process.env.DEFAULT_TIMEOUT || 10;
 
 class MessageQueueService {
   constructor() {

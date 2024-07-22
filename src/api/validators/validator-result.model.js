@@ -12,3 +12,5 @@ class ValidatorResult {
     return new ValidatorResult(true);
   }
 }
+
+export default ValidatorResult;

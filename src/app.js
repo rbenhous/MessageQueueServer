@@ -4,10 +4,12 @@ import basicRoutes from "./api/routes/basic.routes.js";
 import messageQueueRoutes from "./api/routes/message-queue.routes.js";
 import requestLoggerMiddleware from "./api/middlewares/requestLogger.middleware.js";
 import MessageQueuesRepository from "./infra/repositories/message-queues.repository.js";
+import * as dotenv from "dotenv";
 
 class App {
   constructor() {
     this.app = express();
+    dotenv.config();
     this.port = process.env.PORT || 3000;
     this.init_middlewares();
     this.init_routes();

@@ -4,6 +4,7 @@ import basicRoutes from "./api/routes/basic.routes.js";
 import messageQueueRoutes from "./api/routes/message-queue.routes.js";
 import requestLoggerMiddleware from "./api/middlewares/requestLogger.middleware.js";
 import errorMiddleware from "./api/middlewares/error.middleware.js";
+import MessageQueuesRepository from "./infra/repositories/message-queues.repository.js";
 
 class App {
   constructor() {
@@ -11,6 +12,7 @@ class App {
     this.port = process.env.PORT || 3000;
     this.init_middlewares();
     this.init_routes();
+    this.init_repositories();
   }
 
   init_middlewares() {
@@ -29,6 +31,10 @@ class App {
     this.app.listen(this.port, () => {
       console.log(`Server listening on port ${this.port}`);
     });
+  }
+
+  init_repositories() {
+    this.message_queues_repository = new MessageQueuesRepository();
   }
 }
 

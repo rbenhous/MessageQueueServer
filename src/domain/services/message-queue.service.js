@@ -1,17 +1,13 @@
 import Result from "../models/result.model.js";
 import MessageQueuesRepository from "../../infra/repositories/message-queues.repository.js";
 import logger from "../../common/logger/console-logger.js";
-import waitTimeout from "../../common/utils/wait-timeout.js";
+import waitTimeout from "../../common/utils/wait-timeout.util.js";
 
 const DEFAULT_TIMEOUT =  10;
 
 class MessageQueueService {
   constructor() {
-    this.message_queues_repository = null;
-  }
-  
-  async init() {
-    this.message_queues_repository = await MessageQueuesRepository.GetInstance();
+    this.message_queues_repository = MessageQueuesRepository.GetInstance();
   }
 
   async addMessage(queue_name, message) {
@@ -25,9 +21,8 @@ class MessageQueueService {
       }
 
       if (await queue.hasOverflow()) {
-        const error_msg = `MessageQueueService >> queue overflow >> queue is full`;
-        logger.error(error_msg);
-        return Result.createOverflowError(error_msg);
+        logger.warning(`MessageQueueService >> queue overflow >> queue is full`);
+        return Result.createOverflowError(queue_name);
       }
 
       await queue.enqueue(message);

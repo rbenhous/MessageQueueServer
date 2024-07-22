@@ -8,7 +8,6 @@ class MessageQueueController {
 
     logger.info(`MessageQueueController >> Adding message to queue [${queue_name}]`);
     const messageQueueService = new MessageQueueService();
-    await messageQueueService.init();
     const result = await messageQueueService.addMessage(queue_name, message);
 
     if (result.success) {
@@ -26,7 +25,6 @@ class MessageQueueController {
 
     logger.info(`MessageQueueController >> Getting messages from queue [${queue_name}] with timeout [${timeout}]`);
     const messageQueueService = new MessageQueueService();
-    await messageQueueService.init();
     const result = await messageQueueService.getMessage(queue_name, timeout)
 
     if (result.success) {

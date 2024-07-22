@@ -1,6 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
-import {init_basic_routes} from "./api/routes/basic.routes.js";
+import basicRoutes from "./api/routes/basic.routes.js";
+import messageQueueRoutes from "./api/routes/message-queue.routes.js";
+import requestLoggerMiddleware from "./api/middlewares/requestLogger.middleware.js";
 
 class App {
   constructor() {
@@ -12,10 +14,13 @@ class App {
 
   init_middlewares() {
     this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({ extended: true })); //todo: check if this is needed
+    this.app.use(requestLoggerMiddleware);
   }
 
   init_routes() {
-    init_basic_routes(this.app);
+    this.app.use('', basicRoutes)
+    this.app.use('/api', messageQueueRoutes)
   }
 
   listen() {

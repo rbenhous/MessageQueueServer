@@ -2,10 +2,10 @@
   "name": "message_queue_server",
   "version": "1.0.0",
   "description": "TabNine assignment - server for managing queues of messages.",
-  "main": "src/app.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node src/app.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

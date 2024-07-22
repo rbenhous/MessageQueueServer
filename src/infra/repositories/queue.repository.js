@@ -1,4 +1,5 @@
 import {Semaphore} from "async-mutex";
+import semaphore_lock from "../../common/utils/semaphore-wrapper.util.js";
 
 class Queue {
   constructor(queue_name, max_queue_size = null) {
@@ -9,39 +10,19 @@ class Queue {
   }
 
   async enqueue(message) {
-    await this.semaphore.acquire();
-    try {
-      this.queue.push(message);
-    } finally {
-      await this.semaphore.release();
-    }
+    return await semaphore_lock(this.semaphore, async () => this.queue.push(message));
   }
 
   async dequeue() {
-    await this.semaphore.acquire();
-    try {
-      return this.queue.shift();
-    } finally {
-      await this.semaphore.release();
-    }
+    return await semaphore_lock(this.semaphore, async () => this.queue.shift());
   }
 
   async hasUnderflow() {
-    await this.semaphore.acquire();
-    try {
-      return this.queue.length === 0;
-    } finally {
-      await this.semaphore.release();
-    }
+    return await semaphore_lock(this.semaphore, async () => this.queue.length === 0);
   }
 
   async hasOverflow() {
-    await this.semaphore.acquire();
-    try {
-      return this.queue.length === this.MAX_QUEUE_SIZE;
-    } finally {
-      await this.semaphore.release();
-    }
+    return await semaphore_lock(this.semaphore, async () => this.queue.length === this.MAX_QUEUE_SIZE);
   }
 }
 

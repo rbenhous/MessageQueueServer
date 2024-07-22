@@ -23,11 +23,10 @@ class Result {
         return result;
     }
     
-    static createUnderflowSuccess(queue_name, data = null) {
+    static createUnderflowSuccess(queue_name) {
         const result = new Result();
         result.success = true;
         result.status = HttpStatusCodes.NO_CONTENT;
-        result.data = data;
         result.message = `Queue [${queue_name}] underflow >> queue is empty`;
         return result;
     }
@@ -53,6 +52,14 @@ class Result {
     result.success = false;
     result.status = status || HttpStatusCodes.INTERNAL_SERVER_ERROR;
     result.error = error;
+    return result;
+  }
+
+  static createInvalidRequest(error_message) {
+    const result = new Result();
+    result.success = false;
+    result.status = HttpStatusCodes.BAD_REQUEST;
+    result.error = error_message;
     return result;
   }
 }

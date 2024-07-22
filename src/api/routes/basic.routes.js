@@ -1,6 +1,12 @@
 import express from "express";
 import logger from "../../common/logger/console-logger.js";
 
+
+/**
+ * Basic routes are not part of the requirements.
+ * They are just helped me to configure the server.
+ * Can be future used for health-checks or to be removed.
+ */
 const router = express.Router();
 
 router.get('/', (req, res) => {

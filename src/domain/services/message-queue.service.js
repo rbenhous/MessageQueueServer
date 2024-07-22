@@ -47,7 +47,7 @@ class MessageQueueService {
 
       if (await queue.hasUnderflow()) {
         logger.info(`MessageQueueService >> queue underflow >> queue is empty`);
-        return Result.createUnderflowSuccess();
+        return Result.createUnderflowSuccess(queue_name);
       }
 
       const message = await queue.dequeue(timeout);

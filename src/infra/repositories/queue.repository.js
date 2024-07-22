@@ -5,7 +5,7 @@ class Queue {
   constructor(queue_name, max_queue_size = null) {
     this.queue_name = queue_name;
     this.queue = [];
-    this.MAX_QUEUE_SIZE = max_queue_size || process.env.MAX_QUEUE_SIZE || 10;
+    this.MAX_QUEUE_SIZE = max_queue_size || parseInt(process.env.MAX_QUEUE_SIZE) || 10;
     this.semaphore = new Semaphore(1);
   }
 

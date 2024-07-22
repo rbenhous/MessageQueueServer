@@ -12,6 +12,7 @@
   "author": "Roee Benhouse",
   "license": "ISC",
   "dependencies": {
+    "async-mutex": "^0.5.0",
     "body-parser": "^1.20.2",
     "express": "^4.19.2",
     "js-logger": "^1.6.1"

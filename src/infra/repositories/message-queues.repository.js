@@ -19,22 +19,18 @@ class MessageQueuesRepository {
   }
 
   async createQueueIfNotExists(queue_name) {
-    await semaphore.acquire_message_queues();
-    try {
+    return await semaphore_lock(this.semaphore, async () => {
       if (this.messageQueues.has(queue_name)) {
         return;
       }
 
       logger.info(`MessageQueuesRepository >> Adding queue [${queue_name}]`);
       this.messageQueues.set(queue_name, new Queue(queue_name));
-    } finally {
-      await semaphore.release_message_queues();
-    }
+    });
   }
 
   async getQueue(queue_name) {
-    await semaphore.acquire_message_queues();
-    try {
+    return await semaphore_lock(this.semaphore, async () => {
       if (!this.messageQueues.has(queue_name)) {
         const error_msg = `Queue [${queue_name}] not found`;
         logger.error(`MessageQueuesRepository >> ${error_msg}`);
@@ -43,9 +39,7 @@ class MessageQueuesRepository {
 
       logger.info(`MessageQueuesRepository >> Getting queue [${queue_name}]`);
       return this.messageQueues.get(queue_name);
-    } finally {
-      await semaphore.release_message_queues();
-    }
+    });
   }
 }
 

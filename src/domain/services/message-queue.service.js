@@ -1,7 +1,7 @@
 import Result from "../models/result.model.js";
 import MessageQueuesRepository from "../../infra/repositories/message-queues.repository.js";
 import logger from "../../common/logger/console-logger.js";
-import waitTimeout from "../utils/wait-timeout.js";
+import waitTimeout from "../../common/utils/wait-timeout.js";
 
 const DEFAULT_TIMEOUT =  10;
 

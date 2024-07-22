@@ -19,6 +19,12 @@ DEFAULT_TIMEOUT = 10
 npm run start
 ```
 
+## Test
+```bash  
+# unit tests  
+npm run test
+```
+
 ## Endpoints
 ### POST /api/{queue_name}
 This will place a new message in the queue named queue_name.

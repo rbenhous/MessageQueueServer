@@ -38,6 +38,4 @@ class App {
   }
 }
 
-const app = new App();
-app.listen();
-export default app;
+export default App;
